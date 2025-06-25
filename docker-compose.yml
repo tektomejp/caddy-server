@@ -1,0 +1,21 @@
+services:
+  caddy:
+    build:
+      context: .
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - BE_DOMAIN_ADDRESS=localhost
+      - BE_REALTIME_ADDRESS=host.docker.internal:3001
+      - BE_GATEWAY_ADDRESS=host.docker.internal:8000
+    volumes:
+      - ./conf:/etc/caddy
+      - ./site:/srv
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:
