@@ -1,14 +1,18 @@
 {$BE_DOMAIN_ADDRESS} {
-    handle_path /realtime* {
-        reverse_proxy {
-            to {$BE_REALTIME_ADDRESS}
-            transport http {
-                versions h2c
-            }
-        }
-    }
+	handle_path /realtime* {
+		reverse_proxy {
+			to {$BE_REALTIME_ADDRESS}
+			header_up Host {upstream_hostport}
+			transport http {
+				versions h2c
+			}
+		}
+	}
 
-    handle_path /* {
-        reverse_proxy {$BE_GATEWAY_ADDRESS}
-    }
+	handle_path /* {
+		reverse_proxy {
+			to {$BE_GATEWAY_ADDRESS}
+			header_up Host {upstream_hostport}
+		}
+	}
 }
