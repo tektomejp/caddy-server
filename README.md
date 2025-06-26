@@ -20,6 +20,19 @@ This directory is used to store Caddy's configuration files to disk
 
 More on https://caddyserver.com/docs/conventions#configuration-directory
 
+
+## Environment variables
+### `BE_DOMAIN_ADDRESS`
+
+This variable sets the domain address of the backend service. e.g `localhost` or `example.com`
+
+### `BE_REALTIME_ADDRESS`
+This variable sets the address of the electricsql sync service for real-time communication
+
+### `BE_GATEWAY_ADDRESS`
+This variable sets the address of the backend gateway service. This is typically used for API requests.
+
+
 ## Setup
 ### Running Caddy using Dockerfile (Adjust ports as needed)
 ```
